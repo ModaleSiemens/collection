@@ -5,15 +5,11 @@
 
 namespace mdsm
 {
-    enum class Endianness
-    {
-        big, little
-    };
-
+    // Default Endianness: Big Endian
     class Collection
     {
         public:
-            Collection(const Endianness endianness);
+            Collection();
             Collection(const Collection& collection);
             Collection(Collection&& collection);
 
@@ -53,7 +49,7 @@ namespace mdsm
 
             void resize(size_t size);
 
-        protected:
+        private:
             std::vector<std::byte> data;
 
             bool clear_on_sending   {true};
@@ -61,6 +57,9 @@ namespace mdsm
             bool drop_on_retrieving {true};
 
             void cropBytes(size_t bytes);
+
+            template <typename T>
+            std::vector<std::byte> getProperEndiannessData(const T& source);
     };
 }
 
