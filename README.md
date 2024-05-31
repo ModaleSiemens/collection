@@ -4,12 +4,7 @@ Fancy wrapper around a dynamic *byte* array. Can be overloaded to work with file
 ### Sending
 ```cpp
 template <>
-inline A& mdsm::operator<<
-        <A>
-    (
-        A& a,
-        const mdsm::Collection& collection
-    ) 
+inline A& mdsm::operator<<<A>(A& a, const mdsm::Collection& collection) 
 {
     //...
 
@@ -19,12 +14,7 @@ inline A& mdsm::operator<<
 ### Receiving
 ```cpp
 template <>
-inline A& mdsm::operator>>
-        <A>
-    (
-        A& a,
-        mdsm::Collection& collection
-    )
+inline A& mdsm::operator>><A>(A& a, mdsm::Collection& collection)
 {
     //...
 
