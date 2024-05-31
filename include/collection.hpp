@@ -2,6 +2,10 @@
 
 #include <vector>
 #include <string_view>
+#include <cstring>
+#include <string>
+#include <bit>
+#include <algorithm>
 
 namespace mdsm
 {
@@ -9,7 +13,7 @@ namespace mdsm
     class Collection
     {
         public:
-            Collection();
+            Collection() = default;
             Collection(const Collection& collection);
             Collection(Collection&& collection);
 
@@ -40,9 +44,16 @@ namespace mdsm
             Collection& clearOnReceiving(bool value);
             Collection& dropOnRetrieving(bool value);
 
+            bool clearsOnSending()   const;
+            bool clearsOnReceiving() const;
+            bool dropsOnRetrieving() const;
+
             Collection& clear();
 
-            size_t getSize() const;
+            size_t getSize()     const;
+            size_t getDataSize() const;
+
+            bool isEmpty() const;
 
             std::byte* getData();
             const std::byte* getData() const;
@@ -59,7 +70,10 @@ namespace mdsm
             void cropBytes(size_t bytes);
 
             template <typename T>
-            std::vector<std::byte> getProperEndiannessData(const T& source);
+            static std::vector<std::byte> prepareDataForInserting(const T& source);
+            
+            template <typename T>
+            static T prepareDataForExtracting(const std::byte const* data);            
     };
 }
 
