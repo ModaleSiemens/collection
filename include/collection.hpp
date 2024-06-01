@@ -73,7 +73,7 @@ namespace mdsm
             static std::vector<std::byte> prepareDataForInserting(const T& source);
             
             template <typename T>
-            static T prepareDataForExtracting(const std::byte const* data);            
+            static T prepareDataForExtracting(const std::byte* const data);            
     };
 }
 

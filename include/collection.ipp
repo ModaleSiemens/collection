@@ -227,7 +227,7 @@ namespace mdsm
     }
 
     template <typename T>
-    T Collection::prepareDataForExtracting(const std::byte const* data)
+    T Collection::prepareDataForExtracting(const std::byte* const data)
     {
         T object;
 
@@ -246,6 +246,6 @@ namespace mdsm
             std::memcpy(&object, data, sizeof(T));
         }
 
-        return T;
+        return object;
     }
 }
