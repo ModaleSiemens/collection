@@ -77,12 +77,8 @@ namespace mdsm
     template <typename T>
     inline Collection& operator>>(Collection& collection, T& destination)
     {
-        std::memcpy(
-            &destination,
-            Collection::prepareDataForExtracting(collection.getData()),
-            sizeof(destination)
-        );
-
+        destination = std::move(Collection::prepareDataForExtracting(collection.getData())),
+            
         if(collection.dropsOnRetrieving())
         {
             collection.cropBytes(sizeof(destination));
