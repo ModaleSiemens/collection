@@ -13,6 +13,8 @@ namespace mdsm
     class Collection
     {
         public:
+            using Size = std::size_t;
+
             Collection() = default;
             Collection(const Collection& collection);
             Collection(Collection&& collection);
