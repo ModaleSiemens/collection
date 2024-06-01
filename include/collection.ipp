@@ -231,7 +231,7 @@ namespace mdsm
         {
             std::vector<std::byte> data {sizeof(T)};
 
-            std::memcpy(data, &object, sizeof(T));
+            std::memcpy(data.data(), &object, sizeof(T));
 
             std::ranges::reverse(data);
 
@@ -239,7 +239,7 @@ namespace mdsm
         }
         else 
         {
-            std::memcpy(&object, data, sizeof(T));
+            std::memcpy(&object, data.data(), sizeof(T));
         }
 
         return object;
