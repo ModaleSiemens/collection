@@ -62,6 +62,12 @@ namespace mdsm
 
             void resize(size_t size);
 
+            template <typename T>
+            static std::vector<std::byte> prepareDataForInserting(const T& source);
+            
+            template <typename T>
+            static T prepareDataForExtracting(const std::byte* const data);   
+
         private:
             std::vector<std::byte> data;
 
@@ -69,13 +75,7 @@ namespace mdsm
             bool clear_on_receiving {true};
             bool drop_on_retrieving {true};
 
-            void cropBytes(size_t bytes);
-
-            template <typename T>
-            static std::vector<std::byte> prepareDataForInserting(const T& source);
-            
-            template <typename T>
-            static T prepareDataForExtracting(const std::byte* const data);            
+            void cropBytes(size_t bytes);         
     };
 }
 
