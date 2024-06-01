@@ -77,7 +77,7 @@ namespace mdsm
     template <typename T>
     inline Collection& operator>>(Collection& collection, T& destination)
     {
-        destination = std::move(Collection::prepareDataForExtracting(collection.getData())),
+        destination = std::move(Collection::prepareDataForExtracting<T>(collection.getData()));
             
         if(collection.dropsOnRetrieving())
         {
