@@ -223,7 +223,7 @@ namespace mdsm
     }
 
     template <typename T>
-    T Collection::prepareDataForExtracting(const std::byte* const data)
+    T Collection::prepareDataForExtracting(const std::byte* const t_data)
     {
         T object;
 
@@ -231,7 +231,7 @@ namespace mdsm
         {
             std::vector<std::byte> data {sizeof(T)};
 
-            std::memcpy(data.data(), &object, sizeof(T));
+            std::memcpy(data.data(), t_data, sizeof(T));
 
             std::ranges::reverse(data);
 
@@ -239,7 +239,7 @@ namespace mdsm
         }
         else 
         {
-            std::memcpy(&object, data.data(), sizeof(T));
+            std::memcpy(&object, t_data, sizeof(T));
         }
 
         return object;
