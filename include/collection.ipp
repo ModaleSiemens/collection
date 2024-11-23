@@ -105,110 +105,110 @@ namespace mdsm
 
 namespace mdsm
 {
-    Collection::Collection(const Collection& collection)
+    inline Collection::Collection(const Collection& collection)
     {
         this->operator=(collection);
     }
 
-    Collection::Collection(Collection&& collection)
+    inline Collection::Collection(Collection&& collection)
     {
         this->operator=(std::move(collection));
     }
 
-    Collection& Collection::operator=(const Collection& collection)
+    inline Collection& Collection::operator=(const Collection& collection)
     {
         data = collection.data;
 
         return *this;
     }
 
-    Collection& Collection::operator=(Collection&& collection)
+    inline Collection& Collection::operator=(Collection&& collection)
     {
         data = std::move(collection.data);
 
         return *this;
     }
 
-    Collection& Collection::clearOnSending(const bool value)
+    inline Collection& Collection::clearOnSending(const bool value)
     {
         clear_on_sending = value;
 
         return *this;
     }
 
-    Collection& Collection::clearOnReceiving(const bool value)
+    inline Collection& Collection::clearOnReceiving(const bool value)
     {
         clear_on_receiving = value;
 
         return *this;
     }
 
-    Collection& Collection::dropOnRetrieving(const bool value)
+    inline Collection& Collection::dropOnRetrieving(const bool value)
     {
         drop_on_retrieving = value;
 
         return *this;
     }
 
-    Collection& Collection::clear()
+    inline Collection& Collection::clear()
     {
         data.clear();
 
         return *this;
     }
 
-    size_t Collection::getSize() const 
+    inline size_t Collection::getSize() const 
     {
         return data.size();
     }
 
-    void Collection::cropBytes(const size_t bytes_count)
+    inline void Collection::cropBytes(const size_t bytes_count)
     {
         data.erase(data.begin(), data.begin() + bytes_count);
     }
 
-    std::byte* Collection::getData()
+    inline std::byte* Collection::getData()
     {
         return data.data();
     }
 
-    const std::byte* Collection::getData() const
+    inline const std::byte* Collection::getData() const
     {
         return data.data();
     }
 
-    void Collection::resize(const size_t new_size)
+    inline void Collection::resize(const size_t new_size)
     {
         data.resize(new_size);
     }
     
-    bool Collection::isEmpty() const
+    inline bool Collection::isEmpty() const
     {
         return !getSize();
     }
 
-    bool Collection::clearsOnSending() const
+    inline bool Collection::clearsOnSending() const
     {
         return clear_on_sending;
     }
 
-    bool Collection::clearsOnReceiving() const
+    inline bool Collection::clearsOnReceiving() const
     {
         return clear_on_receiving;
     }
 
-    bool Collection::dropsOnRetrieving() const
+    inline bool Collection::dropsOnRetrieving() const
     {
         return drop_on_retrieving;
     }        
 
-    size_t Collection::getDataSize() const 
+    inline size_t Collection::getDataSize() const 
     {
         return data.size();
     }
 
     template <typename T>
-    std::vector<std::byte> Collection::prepareDataForInserting(const T& source)
+    inline std::vector<std::byte> Collection::prepareDataForInserting(const T& source)
     {
         std::vector<std::byte> data (sizeof(source));
 
@@ -223,7 +223,7 @@ namespace mdsm
     }
 
     template <typename T>
-    T Collection::prepareDataForExtracting(const std::byte* const t_data)
+    inline T Collection::prepareDataForExtracting(const std::byte* const t_data)
     {
         T object;
 
